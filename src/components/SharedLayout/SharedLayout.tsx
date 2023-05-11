@@ -1,22 +1,27 @@
 import React from 'react';
-import { Box, Container, Divider, Flex, Link } from '@chakra-ui/react';
-import { NavLink } from 'react-router-dom';
+import { Container, Divider, Flex, Link } from '@chakra-ui/react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../images/logo.svg';
+import Filter from '../Filter/Filter';
 
 const SharedLayout: React.FC = () => {
   return (
     <Container>
-      <Box as='header'>
-        <Flex as='nav' justifyContent='center'>
-          <Link as={NavLink} p={3} to='/'>
+      <Flex as='header' w='100%' alignItems='center'>
+        <Link display='block' w='30px' h='100%' as={NavLink} to='/'>
+          <Logo width='100%' height='100%' />
+        </Link>
+        <Flex as='nav' p={2} gap={3} fontSize='xl'>
+          <Link as={NavLink} to='/home'>
             Home
           </Link>
-          <Divider orientation='vertical' />
-          <Link as={NavLink} p={3} to='/contacts'>
+          <Link as={NavLink} to='/contacts'>
             Contacts
           </Link>
         </Flex>
-        <Divider />
-      </Box>
+      </Flex>
+      <Divider />
+      <Outlet />
     </Container>
   );
 };
