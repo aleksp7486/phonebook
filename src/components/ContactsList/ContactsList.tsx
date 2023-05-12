@@ -5,13 +5,14 @@ import { Flex } from '@chakra-ui/react';
 
 type Props = {
   contacts: Array<IContact>;
+  handelDeleteContact: Function;
 };
 
-const ContactsList = ({ contacts }: Props) => {
+const ContactsList = ({ contacts, ...rest }: Props) => {
   return (
     <Flex as='ul' flexDirection='column' gap={2}>
       {contacts.map((item: IContact) => {
-        return <ContactsItem key={item.id} contact={item} />;
+        return <ContactsItem key={item.id} contact={item} {...rest} />;
       })}
     </Flex>
   );

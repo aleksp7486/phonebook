@@ -5,9 +5,10 @@ import React from 'react';
 
 type Props = {
   contact: IContact;
+  handelDeleteContact: Function;
 };
 
-const ContactsItem = ({ contact }: Props) => {
+const ContactsItem = ({ contact, handelDeleteContact }: Props) => {
   return (
     <Flex as='li' justifyContent='space-between' alignItems='center'>
       <Flex alignItems='center' gap={4}>
@@ -26,6 +27,7 @@ const ContactsItem = ({ contact }: Props) => {
           icon={<StarIcon />}
         />
         <IconButton
+          onClick={() => handelDeleteContact(contact.id)}
           variant='outline'
           colorScheme='teal'
           aria-label='Delete contact'
