@@ -6,6 +6,7 @@ import { Flex } from '@chakra-ui/react';
 type Props = {
   contacts: Array<IContact>;
   handelDeleteContact: Function;
+  toggleFavorite: Function;
 };
 
 const ContactsList = ({ contacts, ...rest }: Props) => {
