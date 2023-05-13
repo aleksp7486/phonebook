@@ -1,14 +1,26 @@
-import { Box, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import {
+  Flex,
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+} from '@chakra-ui/react';
+import { StarIcon, SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
 
 type Props = {
   handelFilterChange: Function;
+  handelShowFavorite: Function;
+  showFavorite: boolean;
 };
 
-const Filter = ({ handelFilterChange }: Props) => {
+const Filter = ({
+  handelFilterChange,
+  handelShowFavorite,
+  showFavorite,
+}: Props) => {
   return (
-    <Box py={4}>
+    <Flex gap={4} py={4}>
       <InputGroup>
         <InputLeftAddon children={<SearchIcon />} />
         <Input
@@ -18,7 +30,14 @@ const Filter = ({ handelFilterChange }: Props) => {
           focusBorderColor='teal.600'
         />
       </InputGroup>
-    </Box>
+      <IconButton
+        onClick={() => handelShowFavorite()}
+        variant='outline'
+        colorScheme={showFavorite ? 'teal' : 'black'}
+        aria-label='Show favorite'
+        icon={<StarIcon />}
+      />
+    </Flex>
   );
 };
 

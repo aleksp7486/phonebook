@@ -1,7 +1,7 @@
 import ContactsList from 'components/ContactsList';
 import Filter from 'components/Filter';
 import { IContact } from 'components/types/contacts';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from 'services/contactsAPI';
 
 type Props = {};
@@ -9,6 +9,7 @@ type Props = {};
 const Contacts = (props: Props) => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
   const [filter, setFilter] = useState('');
+  const [showFavorite, setShowFavorite] = useState(false);
   useEffect(() => {
     const getContacts = async () => {
       const fetchedContacts = await api.getAllContacts();
@@ -18,8 +19,7 @@ const Contacts = (props: Props) => {
   }, []);
 
   const handelFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setFilter(newValue);
+    setFilter((e.target as any).value);
   };
 
   const filterContacts = () => {
@@ -31,6 +31,16 @@ const Contacts = (props: Props) => {
   };
 
   const filteredContacts = filterContacts();
+
+  const handelShowFavorite = () => {
+    setShowFavorite(!showFavorite);
+  };
+
+  const showFavoriteContacts = () => {
+    return filteredContacts.filter(contact => contact.favorite);
+  };
+
+  const favoriteContacts = showFavoriteContacts();
 
   const handelDeleteContact = async (id: string) => {
     const response = await api.deleteContact(id);
@@ -62,9 +72,13 @@ const Contacts = (props: Props) => {
 
   return (
     <>
-      <Filter handelFilterChange={handelFilterChange} />
+      <Filter
+        handelFilterChange={handelFilterChange}
+        handelShowFavorite={handelShowFavorite}
+        showFavorite={showFavorite}
+      />
       <ContactsList
-        contacts={filteredContacts}
+        contacts={showFavorite ? favoriteContacts : filteredContacts}
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
       />

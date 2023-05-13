@@ -56,7 +56,7 @@ const ContactsItem = ({
               onClick={() => toggleFavorite(contact)}
               icon={<StarIcon />}
             >
-              Add to favorite
+              Favorite
             </MenuItem>
             <MenuItem
               onClick={() => handelDeleteContact(contact.id)}

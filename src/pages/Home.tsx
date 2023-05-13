@@ -4,13 +4,13 @@ import { ReactComponent as Logo } from 'images/logo.svg';
 const Home = () => {
   return (
     <Grid
-      paddingTop={200}
+      paddingTop={100}
       gridGap='20px'
       justifyContent='center'
       textAlign='center'
     >
       <Heading>Phonebook</Heading>
-      <Logo fill='teal' />
+      <Logo width={300} height={300} fill='teal' />
     </Grid>
   );
 };
