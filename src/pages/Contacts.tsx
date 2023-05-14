@@ -7,7 +7,8 @@ import api from 'services/contactsAPI';
 const Contacts: React.FC = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
   const [filter, setFilter] = useState('');
-  const [showFavorite, setShowFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+
   useEffect(() => {
     const getContacts = async () => {
       const fetchedContacts = await api.getAllContacts();
@@ -24,14 +25,14 @@ const Contacts: React.FC = () => {
     return contacts.filter(
       contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-        contact.number.toString().includes(filter.toString()),
+        contact.number.toString().includes(filter.toString())
     );
   };
 
   const filteredContacts = filterContacts();
 
   const handelShowFavorite = () => {
-    setShowFavorite(!showFavorite);
+    setFavorite(!favorite);
   };
 
   const showFavoriteContacts = () => {
@@ -44,7 +45,7 @@ const Contacts: React.FC = () => {
     const response = await api.deleteContact(id);
     if (response) {
       const updatedContacts = contacts.filter(
-        contact => contact.id !== response.id,
+        contact => contact.id !== response.id
       );
       setContacts(updatedContacts);
     } else {
@@ -73,10 +74,10 @@ const Contacts: React.FC = () => {
       <Filter
         handelFilterChange={handelFilterChange}
         handelShowFavorite={handelShowFavorite}
-        showFavorite={showFavorite}
+        showFavorite={favorite}
       />
       <ContactsList
-        contacts={showFavorite ? favoriteContacts : filteredContacts}
+        contacts={!favorite ? filteredContacts : favoriteContacts}
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
       />

@@ -7,21 +7,21 @@ const SharedLayout: React.FC = () => {
   return (
     <Container>
       <Flex
-        as='header'
-        justifyContent='space-between'
-        alignItems='center'
-        w='100%'
+        as="header"
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
       >
-        <Link as={NavLink} to='/' display='flex' alignItems='flex-end' gap={2}>
-          <Logo fill='teal' width='30px' height='30px' />{' '}
-          <Heading size='lg'>Phonebook</Heading>
-        </Link>
-        <Flex as='nav' p={4} gap={3} fontSize='xl'>
-          <Link as={NavLink} fontWeight={700} to='/'>
-            Home
-          </Link>
-          <Link as={NavLink} fontWeight={700} to='/contacts'>
+        <Flex as={NavLink} to="/" alignItems="center" gap={2}>
+          <Logo fill="teal" width="22px" height="22px" />
+          <Heading size="lg">Phonebook</Heading>
+        </Flex>
+        <Flex as="nav" p={4} gap={3} fontSize="xl">
+          <Link as={NavLink} fontWeight={700} to="/">
             Contacts
+          </Link>
+          <Link as={NavLink} fontWeight={700} to="/login">
+            Login
           </Link>
         </Flex>
       </Flex>

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout';
-import Home from 'pages/Home';
+import Login from 'pages/Login';
 import Contacts from 'pages/Contacts';
 
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path='/' element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path='contacts' element={<Contacts />} />
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Contacts />} />
+        <Route path="login" element={<Login />} />
       </Route>
     </Routes>
   );
