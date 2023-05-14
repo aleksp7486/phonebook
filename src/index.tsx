@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <BrowserRouter>
+      <BrowserRouter basename='/phonebook/'>
         <App />
       </BrowserRouter>
     </ChakraProvider>
