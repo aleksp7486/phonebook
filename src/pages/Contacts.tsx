@@ -4,9 +4,7 @@ import { IContact } from 'components/types/contacts';
 import React, { useEffect, useState } from 'react';
 import api from 'services/contactsAPI';
 
-type Props = {};
-
-const Contacts = (props: Props) => {
+const Contacts: React.FC = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
   const [filter, setFilter] = useState('');
   const [showFavorite, setShowFavorite] = useState(false);

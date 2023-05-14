@@ -13,6 +13,17 @@ const getAllContacts = async () => {
   }
 };
 
+const getContactById = async (id: string) => {
+  try {
+    const request = await axios.get(`baseUrl/${id}`);
+    if (request.status === 200) {
+      return request.data;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const deleteContact = async (id: string) => {
   try {
     const request = await axios.delete(`${baseUrl}/${id}`);
@@ -22,7 +33,7 @@ const deleteContact = async (id: string) => {
   }
 };
 
-const toggleFavorite = async (contact: IContact) => {
+const editContact = async (contact: IContact) => {
   try {
     const request = await axios.put(`${baseUrl}/${contact.id}`, {
       ...contact,
@@ -34,8 +45,18 @@ const toggleFavorite = async (contact: IContact) => {
   }
 };
 
+const toggleFavorite = async (contact: IContact) => {
+  try {
+    const request = await axios.put(`${baseUrl}/${contact.id}`, { ...contact });
+    return request.status === 200 ? request.data : false;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const contactsAPI = {
   getAllContacts,
+  getContactById,
   deleteContact,
   toggleFavorite,
 };

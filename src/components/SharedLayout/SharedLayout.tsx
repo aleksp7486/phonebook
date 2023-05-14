@@ -26,7 +26,6 @@ const SharedLayout: React.FC = () => {
         </Flex>
       </Flex>
       <Divider />
-
       <Outlet />
     </Container>
   );

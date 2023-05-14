@@ -9,7 +9,7 @@ type Props = {
   toggleFavorite: Function;
 };
 
-const ContactsList = ({ contacts, ...rest }: Props) => {
+const ContactsList: React.FC<Props> = ({ contacts, ...rest }: Props) => {
   return (
     <Flex as='ul' flexDirection='column' gap={2}>
       {contacts.map((item: IContact) => {

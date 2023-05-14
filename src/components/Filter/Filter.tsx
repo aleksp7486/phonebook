@@ -14,7 +14,7 @@ type Props = {
   showFavorite: boolean;
 };
 
-const Filter = ({
+const Filter: React.FC<Props> = ({
   handelFilterChange,
   handelShowFavorite,
   showFavorite,

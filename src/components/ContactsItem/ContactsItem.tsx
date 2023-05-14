@@ -1,15 +1,22 @@
-import { DeleteIcon, HamburgerIcon, StarIcon } from '@chakra-ui/icons';
+import {
+  DeleteIcon,
+  HamburgerIcon,
+  InfoIcon,
+  PhoneIcon,
+  StarIcon,
+} from '@chakra-ui/icons';
 import {
   Avatar,
-  Text,
-  Flex,
   Box,
+  Flex,
   IconButton,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
 } from '@chakra-ui/react';
+import ModalEditContact from 'components/ModalEditContact/ModalEditContact';
 import { IContact } from 'components/types/contacts';
 import React from 'react';
 
@@ -19,7 +26,7 @@ type Props = {
   toggleFavorite: Function;
 };
 
-const ContactsItem = ({
+const ContactsItem: React.FC<Props> = ({
   contact,
   handelDeleteContact,
   toggleFavorite,
@@ -31,9 +38,11 @@ const ContactsItem = ({
         <Avatar size='md' name={name} />
         <Box>
           <Text fontSize='md' noOfLines={1}>
+            <InfoIcon boxSize={3} mr={1} />
             {name}
           </Text>
           <Text fontSize='md' noOfLines={1}>
+            <PhoneIcon boxSize={3} mr={1} />
             {number}
           </Text>
         </Box>
@@ -58,6 +67,7 @@ const ContactsItem = ({
             >
               Favorite
             </MenuItem>
+            <ModalEditContact />
             <MenuItem
               onClick={() => handelDeleteContact(contact.id)}
               icon={<DeleteIcon />}
