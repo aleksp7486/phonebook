@@ -58,6 +58,7 @@ const contactsAPI = {
   getAllContacts,
   getContactById,
   deleteContact,
+  editContact,
   toggleFavorite,
 };
 
