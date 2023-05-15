@@ -41,7 +41,7 @@ const ContactsItem: React.FC<Props> = ({
       </Flex>
       <Flex alignItems="center">
         {!favorite || (
-          <Box color="yellow.400" px={4}>
+          <Box px={4}>
             <StarIcon fill="currenColor" />
           </Box>
         )}

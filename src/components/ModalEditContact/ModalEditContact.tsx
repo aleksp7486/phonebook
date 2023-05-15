@@ -23,7 +23,7 @@ const ModalEditContact: React.FC<Props> = () => {
         Edit contact
       </MenuItem>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
@@ -46,7 +46,7 @@ const ModalEditContact: React.FC<Props> = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
+            <Button colorScheme="blue" mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

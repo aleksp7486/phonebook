@@ -25,17 +25,17 @@ const Filter: React.FC<Props> = ({
         <InputLeftAddon children={<SearchIcon />} />
         <Input
           onChange={e => handelFilterChange(e)}
-          placeholder='Find contact...'
-          size='md'
-          focusBorderColor='teal.600'
+          placeholder="Find contact..."
+          size="md"
+          // focusBorderColor="teal.500"
         />
       </InputGroup>
       <IconButton
         onClick={() => handelShowFavorite()}
-        variant='outline'
-        colorScheme={showFavorite ? 'teal' : 'black'}
-        aria-label='Show favorite'
-        icon={<StarIcon />}
+        variant="outline"
+        isActive={showFavorite}
+        aria-label="Show favorite"
+        icon={<StarIcon color="currentcolor" />}
       />
     </Flex>
   );
