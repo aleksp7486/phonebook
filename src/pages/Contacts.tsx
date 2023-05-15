@@ -6,13 +6,16 @@ import api from 'services/contactsAPI';
 
 const Contacts: React.FC = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
-  const [filter, setFilter] = useState('');
-  const [favorite, setFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [filter, setFilter] = useState<string>('');
+  const [favorite, setFavorite] = useState<boolean>(false);
 
   useEffect(() => {
     const getContacts = async () => {
+      setIsLoading(true);
       const fetchedContacts = await api.getAllContacts();
       setContacts(fetchedContacts);
+      setIsLoading(false);
     };
     getContacts();
   }, []);
@@ -80,6 +83,7 @@ const Contacts: React.FC = () => {
         contacts={!favorite ? filteredContacts : favoriteContacts}
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
+        isContactsLoading={isLoading}
       />
     </>
   );

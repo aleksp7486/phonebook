@@ -1,10 +1,4 @@
-import {
-  DeleteIcon,
-  HamburgerIcon,
-  InfoIcon,
-  PhoneIcon,
-  StarIcon,
-} from '@chakra-ui/icons';
+import { DeleteIcon, HamburgerIcon, StarIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   Box,
@@ -31,11 +25,11 @@ const ContactsItem: React.FC<Props> = ({
   handelDeleteContact,
   toggleFavorite,
 }: Props) => {
-  const { name, number, favorite } = contact;
+  const { name, number, avatar, favorite } = contact;
   return (
     <Flex as="li" justifyContent="space-between" alignItems="center">
       <Flex alignItems="center" gap={4}>
-        <Avatar size="md" name={name} />
+        <Avatar src={avatar} size="md" name={name} />
         <Box>
           <Text fontSize="md" noOfLines={1}>
             {name}
