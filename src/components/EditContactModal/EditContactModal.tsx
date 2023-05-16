@@ -15,12 +15,10 @@ import { IContact } from 'components/types/contacts';
 
 type Props = {
   contactToEdit: IContact;
-  editContact: Function;
+  editContact: (contact: IContact) => void;
 };
 
-//todo prop onClose???
-
-const EditContactModal: React.FC<Props> = ({ ...props }) => {
+const EditContactModal = ({ contactToEdit, editContact }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -40,7 +38,11 @@ const EditContactModal: React.FC<Props> = ({ ...props }) => {
           <ModalHeader>Edit contact</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <EditContactForm onClose={onClose} {...props} />
+            <EditContactForm
+              onClose={onClose}
+              editContact={editContact}
+              contactToEdit={contactToEdit}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>

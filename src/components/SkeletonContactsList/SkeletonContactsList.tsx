@@ -1,7 +1,7 @@
 import { Flex, Skeleton, SkeletonCircle, Stack } from '@chakra-ui/react';
 import React from 'react';
 
-const SkeletonContactsList: React.FC = () => {
+const SkeletonContactsList = () => {
   return (
     <>
       <Stack>

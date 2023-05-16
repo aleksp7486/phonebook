@@ -16,12 +16,12 @@ import React from 'react';
 
 type Props = {
   contact: IContact;
-  handelDeleteContact: Function;
-  toggleFavorite: Function;
-  editContact: Function;
+  handelDeleteContact: (id: string) => Promise<void>;
+  toggleFavorite: (contact: IContact) => Promise<void>;
+  editContact: (contact: IContact) => void;
 };
 
-const ContactsItem: React.FC<Props> = ({
+const ContactsItem = ({
   contact,
   handelDeleteContact,
   toggleFavorite,

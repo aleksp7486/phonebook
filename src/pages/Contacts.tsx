@@ -73,7 +73,7 @@ const Contacts: React.FC = () => {
   };
 
   const handelEditContact = (editedContact: IContact) => {
-    const updatedContacts = contacts.map(contact => {
+    const updatedContacts: IContact[] = contacts.map(contact => {
       if (contact.id === editedContact.id) {
         return editedContact;
       }

@@ -9,12 +9,12 @@ import { StarIcon, SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
 
 type Props = {
-  handelFilterChange: Function;
-  handelShowFavorite: Function;
+  handelFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handelShowFavorite: () => void;
   showFavorite: boolean;
 };
 
-const Filter: React.FC<Props> = ({
+const Filter = ({
   handelFilterChange,
   handelShowFavorite,
   showFavorite,

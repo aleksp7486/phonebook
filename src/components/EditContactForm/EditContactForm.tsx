@@ -6,11 +6,11 @@ import api from 'services/contactsAPI';
 
 type Props = {
   contactToEdit: IContact;
-  editContact: Function;
+  editContact: (contact: IContact) => void;
   onClose: () => void;
 };
 
-const EditContactForm: React.FC<Props> = ({
+const EditContactForm = ({
   contactToEdit: contact,
   editContact,
   onClose,
@@ -22,7 +22,7 @@ const EditContactForm: React.FC<Props> = ({
       number,
     },
     onSubmit: async values => {
-      const editedContact = {
+      const editedContact: IContact = {
         ...contact,
         name: values.name,
         number: values.number,
@@ -35,7 +35,7 @@ const EditContactForm: React.FC<Props> = ({
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Stack spacing={4} mb={16}>
+      <Stack spacing={4} mb={8}>
         <Box>
           <label htmlFor="name">Name</label>
           <Input
@@ -57,7 +57,7 @@ const EditContactForm: React.FC<Props> = ({
           />
         </Box>
       </Stack>
-      <Flex w="100%" justifyContent="flex-end">
+      <Flex w="100%" justifyContent="center">
         <Button type="submit" colorScheme="blue" mr={3}>
           Save
         </Button>

@@ -6,17 +6,13 @@ import SkeletonContactsList from 'components/SkeletonContactsList';
 
 type Props = {
   contacts: Array<IContact>;
-  handelDeleteContact: Function;
-  toggleFavorite: Function;
+  handelDeleteContact: (id: string) => Promise<void>;
+  toggleFavorite: (contact: IContact) => Promise<void>;
   isContactsLoading: boolean;
-  editContact: Function;
+  editContact: (contact: IContact) => void;
 };
 
-const ContactsList: React.FC<Props> = ({
-  contacts,
-  isContactsLoading,
-  ...rest
-}: Props) => {
+const ContactsList = ({ contacts, isContactsLoading, ...rest }: Props) => {
   return (
     <>
       {isContactsLoading ? (

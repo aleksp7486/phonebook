@@ -1,12 +1,15 @@
-import { Grid, Heading } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { ReactComponent as Logo } from 'images/logo.svg';
+import LoginForm from 'components/LoginForm';
 
 const Login = () => {
   return (
-    <Grid gridGap="20px" justifyContent="center" textAlign="center">
-      <Heading>Phonebook</Heading>
-      <Logo width={200} height={200} fill="teal" />
-    </Grid>
+    <>
+      <Flex justifyContent="center" w="100" py={8}>
+        <Logo width={160} height={160} fill="teal" />
+      </Flex>
+      <LoginForm />
+    </>
   );
 };
 
