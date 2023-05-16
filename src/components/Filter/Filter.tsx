@@ -3,7 +3,7 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputLeftAddon,
+  InputLeftElement,
 } from '@chakra-ui/react';
 import { StarIcon, SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -22,7 +22,9 @@ const Filter: React.FC<Props> = ({
   return (
     <Flex gap={4} py={4}>
       <InputGroup>
-        <InputLeftAddon children={<SearchIcon />} />
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="gray.300" />
+        </InputLeftElement>
         <Input
           onChange={e => handelFilterChange(e)}
           placeholder="Find contact..."
@@ -35,6 +37,7 @@ const Filter: React.FC<Props> = ({
         variant="outline"
         isActive={showFavorite}
         aria-label="Show favorite"
+        color="yellow.400"
         icon={<StarIcon color="currentcolor" />}
       />
     </Flex>

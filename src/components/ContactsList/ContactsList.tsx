@@ -9,9 +9,14 @@ type Props = {
   handelDeleteContact: Function;
   toggleFavorite: Function;
   isContactsLoading: boolean;
+  editContact: Function;
 };
 
-const ContactsList = ({ contacts, isContactsLoading, ...rest }: Props) => {
+const ContactsList: React.FC<Props> = ({
+  contacts,
+  isContactsLoading,
+  ...rest
+}: Props) => {
   return (
     <>
       {isContactsLoading ? (

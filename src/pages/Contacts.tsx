@@ -72,6 +72,16 @@ const Contacts: React.FC = () => {
     }
   };
 
+  const handelEditContact = (editedContact: IContact) => {
+    const updatedContacts = contacts.map(contact => {
+      if (contact.id === editedContact.id) {
+        return editedContact;
+      }
+      return contact;
+    });
+    setContacts(updatedContacts);
+  };
+
   return (
     <>
       <Filter
@@ -84,6 +94,7 @@ const Contacts: React.FC = () => {
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
         isContactsLoading={isLoading}
+        editContact={handelEditContact}
       />
     </>
   );
