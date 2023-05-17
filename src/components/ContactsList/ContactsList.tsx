@@ -17,7 +17,7 @@ const ContactsList = ({ contacts, isContactsLoading, ...rest }: Props) => {
       {isContactsLoading ? (
         <SkeletonContactsList />
       ) : (
-        <Flex as="ul" flexDirection="column" gap={2} pt={4}>
+        <Flex as="ul" flexDirection="column" gap={2}>
           {contacts.map((item: IContact) => {
             return <ContactsItem key={item.id} contact={item} {...rest} />;
           })}

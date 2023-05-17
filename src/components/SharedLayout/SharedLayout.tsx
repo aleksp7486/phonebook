@@ -33,7 +33,7 @@ const SharedLayout = () => {
           </Link>
         </Flex>
       </Flex>
-      <Divider />
+      <Divider mb={4} />
       <Outlet />
     </Container>
   );

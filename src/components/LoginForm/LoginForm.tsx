@@ -32,6 +32,7 @@ const LoginForm = (props: Props) => {
             type="email"
             onChange={formik.handleChange}
             value={formik.values.email}
+            focusBorderColor="teal.300"
           />
         </InputGroup>
         <InputGroup>
@@ -43,11 +44,12 @@ const LoginForm = (props: Props) => {
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
+            focusBorderColor="teal.300"
           />
         </InputGroup>
       </Stack>
       <Box w="100%">
-        <Button display="block" type="submit" colorScheme="blue" m="auto">
+        <Button display="block" type="submit" colorScheme="teal" m="auto">
           Login
         </Button>
       </Box>

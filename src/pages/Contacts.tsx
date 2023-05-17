@@ -16,7 +16,11 @@ const Contacts: React.FC = () => {
     const getContacts = async () => {
       setIsLoading(true);
       const fetchedContacts = await api.getAllContacts();
-      setContacts(fetchedContacts);
+      if (fetchedContacts) {
+        setContacts(fetchedContacts);
+      } else {
+        return;
+      }
       setIsLoading(false);
     };
     getContacts();
@@ -64,14 +68,18 @@ const Contacts: React.FC = () => {
 
   const handelAddContact = async (values: IAddFormValues) => {
     const responseContact: IContact = await api.addContact(values);
-    setContacts([...contacts, responseContact]);
+    if (responseContact) {
+      setContacts([...contacts, responseContact]);
+    } else {
+      return;
+    }
   };
 
   const handelDeleteContact = async (id: string) => {
-    const response = await api.deleteContact(id);
-    if (response) {
+    const deletedContact: IContact = await api.deleteContact(id);
+    if (deletedContact) {
       const updatedContacts = contacts.filter(
-        contact => contact.id !== response.id
+        contact => contact.id !== deletedContact.id
       );
       setContacts(updatedContacts);
     } else {
@@ -81,13 +89,18 @@ const Contacts: React.FC = () => {
 
   const handelEditContact = async (editedContact: IContact) => {
     const responseContact: IContact = await api.editContact(editedContact);
-    const updatedContacts: IContact[] = contacts.map(contact => {
-      if (contact.id === responseContact.id) {
-        return editedContact;
-      }
-      return contact;
-    });
-    setContacts(updatedContacts);
+
+    if (responseContact) {
+      const updatedContacts: IContact[] = contacts.map(contact => {
+        if (contact.id === responseContact.id) {
+          return editedContact;
+        }
+        return contact;
+      });
+      setContacts(updatedContacts);
+    } else {
+      return;
+    }
   };
 
   return (

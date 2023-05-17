@@ -42,8 +42,8 @@ const ContactsItem = ({
       </Flex>
       <Flex alignItems="center">
         {!favorite || (
-          <Box px={4} color="yellow.400">
-            <StarIcon fill="currenColor" />
+          <Box px={4} color="teal.500">
+            <StarIcon />
           </Box>
         )}
         <Menu>
@@ -52,8 +52,9 @@ const ContactsItem = ({
             aria-label="Options"
             icon={<HamburgerIcon />}
             variant="outline"
+            color="gray.500"
           />
-          <MenuList>
+          <MenuList color="gray.500">
             <MenuItem onClick={() => toggleFavorite(id)} icon={<StarIcon />}>
               Favorite
             </MenuItem>

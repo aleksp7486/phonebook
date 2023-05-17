@@ -20,16 +20,16 @@ const Filter = ({
   showFavorite,
 }: Props) => {
   return (
-    <Flex gap={4} py={4}>
+    <Flex gap={4} mb={4}>
       <InputGroup>
         <InputLeftElement pointerEvents="none">
-          <SearchIcon color="gray.400" />
+          <SearchIcon color="gray.500" />
         </InputLeftElement>
         <Input
           onChange={e => handelFilterChange(e)}
           placeholder="Find contact..."
           size="md"
-          // focusBorderColor="teal.500"
+          focusBorderColor="teal.300"
         />
       </InputGroup>
       <IconButton
@@ -37,8 +37,8 @@ const Filter = ({
         variant="outline"
         isActive={showFavorite}
         aria-label="Show favorite"
-        color="yellow.400"
-        icon={<StarIcon color="currentcolor" />}
+        color="gray.500"
+        icon={<StarIcon color="teal.500" />}
       />
     </Flex>
   );

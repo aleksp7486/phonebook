@@ -63,6 +63,7 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
                     type="name"
                     onChange={formik.handleChange}
                     value={formik.values.name}
+                    focusBorderColor="teal.300"
                   />
                 </Box>
                 <Box>
@@ -73,12 +74,13 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
                     type="tel"
                     onChange={formik.handleChange}
                     value={formik.values.number}
+                    focusBorderColor="teal.300"
                   />
                 </Box>
               </Stack>
             </ModalBody>
             <ModalFooter>
-              <Button type="submit" colorScheme="blue" mr={3}>
+              <Button type="submit" colorScheme="teal" mr={3}>
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>

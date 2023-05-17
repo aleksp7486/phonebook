@@ -36,10 +36,11 @@ const AddContactForm = ({ handelAddContact }: Props) => {
   return (
     <>
       <Button
-        color="gray.400"
         onClick={onOpen}
         leftIcon={<AddIcon />}
         variant="outline"
+        color="gray.500"
+        mb={4}
         w="100%"
       >
         Add new contact
