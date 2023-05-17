@@ -1,15 +1,14 @@
-import React from 'react';
-import { IContact } from 'components/types/contacts';
-import ContactsItem from 'components/ContactsItem';
 import { Flex } from '@chakra-ui/react';
+import ContactsItem from 'components/ContactsItem';
 import SkeletonContactsList from 'components/SkeletonContactsList';
+import { IContact } from 'components/types/contacts';
 
 type Props = {
   contacts: Array<IContact>;
   handelDeleteContact: (id: string) => Promise<void>;
-  toggleFavorite: (contact: IContact) => Promise<void>;
+  toggleFavorite: (id: string) => Promise<void>;
   isContactsLoading: boolean;
-  editContact: (contact: IContact) => void;
+  handelEditContact: (editedContact: IContact) => void;
 };
 
 const ContactsList = ({ contacts, isContactsLoading, ...rest }: Props) => {

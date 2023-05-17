@@ -12,13 +12,12 @@ import {
 } from '@chakra-ui/react';
 import EditContactModal from 'components/EditContactModal/EditContactModal';
 import { IContact } from 'components/types/contacts';
-import React from 'react';
 
 type Props = {
   contact: IContact;
   handelDeleteContact: (id: string) => Promise<void>;
-  toggleFavorite: (contact: IContact) => Promise<void>;
-  editContact: (contact: IContact) => void;
+  toggleFavorite: (id: string) => Promise<void>;
+  handelEditContact: (editedContact: IContact) => void;
 };
 
 const ContactsItem = ({
@@ -27,7 +26,7 @@ const ContactsItem = ({
   toggleFavorite,
   ...restProps
 }: Props) => {
-  const { name, number, avatar, favorite } = contact;
+  const { id, name, number, avatar, favorite } = contact;
   return (
     <Flex as="li" justifyContent="space-between" alignItems="center">
       <Flex alignItems="center" gap={4}>
@@ -55,15 +54,12 @@ const ContactsItem = ({
             variant="outline"
           />
           <MenuList>
-            <MenuItem
-              onClick={() => toggleFavorite(contact)}
-              icon={<StarIcon />}
-            >
+            <MenuItem onClick={() => toggleFavorite(id)} icon={<StarIcon />}>
               Favorite
             </MenuItem>
-            <EditContactModal contactToEdit={contact} {...restProps} />
+            <EditContactModal contact={contact} {...restProps} />
             <MenuItem
-              onClick={() => handelDeleteContact(contact.id)}
+              onClick={() => handelDeleteContact(id)}
               icon={<DeleteIcon />}
             >
               Delete contact

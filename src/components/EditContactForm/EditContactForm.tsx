@@ -1,20 +1,14 @@
-import { Stack, Input, Button, Box, Flex } from '@chakra-ui/react';
-import React from 'react';
-import { useFormik } from 'formik';
+import { Box, Button, Flex, Input, Stack } from '@chakra-ui/react';
 import { IContact } from 'components/types/contacts';
-import api from 'services/contactsAPI';
+import { useFormik } from 'formik';
 
 type Props = {
-  contactToEdit: IContact;
-  editContact: (contact: IContact) => void;
+  contact: IContact;
+  handelEditContact: (editedContact: IContact) => void;
   onClose: () => void;
 };
 
-const EditContactForm = ({
-  contactToEdit: contact,
-  editContact,
-  onClose,
-}: Props) => {
+const EditContactForm = ({ contact, handelEditContact, onClose }: Props) => {
   const { name, number } = contact;
   const formik = useFormik({
     initialValues: {
@@ -22,14 +16,11 @@ const EditContactForm = ({
       number,
     },
     onSubmit: async values => {
-      const editedContact: IContact = {
+      const editedContact = {
         ...contact,
-        name: values.name,
-        number: values.number,
+        ...values,
       };
-
-      const response = await api.editContact(editedContact);
-      editContact(response);
+      handelEditContact(editedContact);
       onClose();
     },
   });

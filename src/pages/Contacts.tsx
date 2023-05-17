@@ -44,20 +44,8 @@ const Contacts: React.FC = () => {
 
   const favoriteContacts = showFavoriteContacts();
 
-  const handelDeleteContact = async (id: string) => {
-    const response = await api.deleteContact(id);
-    if (response) {
-      const updatedContacts = contacts.filter(
-        contact => contact.id !== response.id
-      );
-      setContacts(updatedContacts);
-    } else {
-      return;
-    }
-  };
-
-  const toggleFavorite = async (contact: IContact) => {
-    const response = await api.toggleFavorite(contact);
+  const toggleFavorite = async (id: string) => {
+    const response = await api.toggleFavorite(id);
     if (response) {
       const updatedContacts = contacts.map(contact => {
         if (contact.id === response.id) {
@@ -72,9 +60,22 @@ const Contacts: React.FC = () => {
     }
   };
 
-  const handelEditContact = (editedContact: IContact) => {
+  const handelDeleteContact = async (id: string) => {
+    const response = await api.deleteContact(id);
+    if (response) {
+      const updatedContacts = contacts.filter(
+        contact => contact.id !== response.id
+      );
+      setContacts(updatedContacts);
+    } else {
+      return;
+    }
+  };
+
+  const handelEditContact = async (editedContact: IContact) => {
+    const responseContact: IContact = await api.editContact(editedContact);
     const updatedContacts: IContact[] = contacts.map(contact => {
-      if (contact.id === editedContact.id) {
+      if (contact.id === responseContact.id) {
         return editedContact;
       }
       return contact;
@@ -94,7 +95,7 @@ const Contacts: React.FC = () => {
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
         isContactsLoading={isLoading}
-        editContact={handelEditContact}
+        handelEditContact={handelEditContact}
       />
     </>
   );

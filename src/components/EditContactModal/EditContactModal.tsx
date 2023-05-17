@@ -1,24 +1,23 @@
-import React from 'react';
+import { EditIcon } from '@chakra-ui/icons';
 import {
+  MenuItem,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
   ModalBody,
   ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   useDisclosure,
-  MenuItem,
 } from '@chakra-ui/react';
-import { EditIcon } from '@chakra-ui/icons';
 import EditContactForm from 'components/EditContactForm';
 import { IContact } from 'components/types/contacts';
 
 type Props = {
-  contactToEdit: IContact;
-  editContact: (contact: IContact) => void;
+  contact: IContact;
+  handelEditContact: (editedContact: IContact) => void;
 };
 
-const EditContactModal = ({ contactToEdit, editContact }: Props) => {
+const EditContactModal = ({ contact, handelEditContact }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -40,8 +39,8 @@ const EditContactModal = ({ contactToEdit, editContact }: Props) => {
           <ModalBody pb={6}>
             <EditContactForm
               onClose={onClose}
-              editContact={editContact}
-              contactToEdit={contactToEdit}
+              handelEditContact={handelEditContact}
+              contact={contact}
             />
           </ModalBody>
         </ModalContent>
