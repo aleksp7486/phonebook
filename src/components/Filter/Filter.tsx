@@ -23,7 +23,7 @@ const Filter = ({
     <Flex gap={4} py={4}>
       <InputGroup>
         <InputLeftElement pointerEvents="none">
-          <SearchIcon color="gray.300" />
+          <SearchIcon color="gray.400" />
         </InputLeftElement>
         <Input
           onChange={e => handelFilterChange(e)}

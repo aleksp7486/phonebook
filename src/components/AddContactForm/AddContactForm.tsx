@@ -1,9 +1,8 @@
-import { EditIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
   Input,
-  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,38 +13,37 @@ import {
   Stack,
   useDisclosure,
 } from '@chakra-ui/react';
+import { IAddFormValues } from 'components/types/addFormValues';
 import { useFormik } from 'formik';
-import { IContact } from 'components/types/contacts';
 
 type Props = {
-  contact: IContact;
-  handelEditContact: (editedContact: IContact) => Promise<void>;
+  handelAddContact: (values: IAddFormValues) => Promise<void>;
 };
 
-const EditContactForm = ({ contact, handelEditContact }: Props) => {
+const AddContactForm = ({ handelAddContact }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { name, number } = contact;
   const formik = useFormik({
     initialValues: {
-      name,
-      number,
+      name: '',
+      number: '',
     },
     onSubmit: values => {
-      const editedContact = {
-        ...contact,
-        ...values,
-      };
-      handelEditContact(editedContact);
+      handelAddContact({ ...values });
       onClose();
     },
   });
 
   return (
     <>
-      <MenuItem onClick={onOpen} icon={<EditIcon />}>
-        Edit contact
-      </MenuItem>
+      <Button
+        color="gray.400"
+        onClick={onOpen}
+        leftIcon={<AddIcon />}
+        variant="outline"
+        w="100%"
+      >
+        Add new contact
+      </Button>
 
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -90,4 +88,4 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
   );
 };
 
-export default EditContactForm;
+export default AddContactForm;

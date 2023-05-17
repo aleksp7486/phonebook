@@ -10,14 +10,14 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
-import EditContactModal from 'components/EditContactModal/EditContactModal';
+import EditContact from 'components/EditContactForm';
 import { IContact } from 'components/types/contacts';
 
 type Props = {
   contact: IContact;
   handelDeleteContact: (id: string) => Promise<void>;
   toggleFavorite: (id: string) => Promise<void>;
-  handelEditContact: (editedContact: IContact) => void;
+  handelEditContact: (editedContact: IContact) => Promise<void>;
 };
 
 const ContactsItem = ({
@@ -57,7 +57,7 @@ const ContactsItem = ({
             <MenuItem onClick={() => toggleFavorite(id)} icon={<StarIcon />}>
               Favorite
             </MenuItem>
-            <EditContactModal contact={contact} {...restProps} />
+            <EditContact contact={contact} {...restProps} />
             <MenuItem
               onClick={() => handelDeleteContact(id)}
               icon={<DeleteIcon />}

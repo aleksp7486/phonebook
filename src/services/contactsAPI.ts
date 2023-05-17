@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IAddFormValues } from 'components/types/addFormValues';
 import { IContact } from 'components/types/contacts';
 
 const baseUrl = 'https://645cea89e01ac61058971e65.mockapi.io/api/contacts';
@@ -20,6 +21,20 @@ const getContactById = async (id: string) => {
     if (request.status === 200) {
       return request.data;
     }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const addContact = async ({ name, number }: IAddFormValues) => {
+  try {
+    const request = await axios.post(baseUrl, {
+      name: name,
+      number: number,
+      favorite: false,
+      avatar: '',
+    });
+    return request.status === 201 ? request.data : false;
   } catch (error) {
     console.error(error);
   }
@@ -61,6 +76,7 @@ const toggleFavorite = async (id: string) => {
 const contactsAPI = {
   getAllContacts,
   getContactById,
+  addContact,
   deleteContact,
   editContact,
   toggleFavorite,
