@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import SubmitForm from 'components/SubmitForm';
+import SubmitForm from 'components/SubmitForm/SubmitForm';
 import { IUser } from 'types/user';
 import api from 'services/userAPI';
 

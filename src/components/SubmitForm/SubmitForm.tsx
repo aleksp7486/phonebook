@@ -17,7 +17,6 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useFormik } from 'formik';
 import { IUser } from '../../types/user';
-// import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 
 type Props = {
   handelSubmit: (user: IUser) => Promise<void>;

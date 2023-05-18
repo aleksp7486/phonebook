@@ -1,10 +1,4 @@
-import {
-  Container,
-  Divider,
-  Flex,
-  Link,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Container, Divider, Flex, Link } from '@chakra-ui/react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import ToggleColorModeButton from 'components/ToggleColorModeButton';
@@ -30,14 +24,16 @@ const SharedLayout = () => {
           <Logo fill="teal" width="20px" height="20px" />
           Phonebook
         </Flex>
-        <ToggleColorModeButton />
-        <Flex as="nav" gap={2} fontWeight={500} fontSize="2xl">
-          <Link as={NavLink} to="/login">
-            Login
-          </Link>
-          <Link as={NavLink} to="/submit">
-            Submit
-          </Link>
+        <Flex gap={4}>
+          <Flex as="nav" gap={2} fontWeight={500} fontSize="2xl">
+            <Link as={NavLink} to="/login">
+              Login
+            </Link>
+            <Link as={NavLink} to="/submit">
+              Submit
+            </Link>
+          </Flex>
+          <ToggleColorModeButton />
         </Flex>
       </Flex>
       <Divider mb={4} />
