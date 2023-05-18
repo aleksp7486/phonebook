@@ -3,8 +3,8 @@ import { IUser } from 'types/user';
 import api from 'services/userAPI';
 
 type Props = {
-  setUser: (value: IUser) => void;
-  setToken: (value: string) => void;
+  // setUser: (value: IUser) => void;
+  // setToken: (value: string) => void;
 };
 
 const Submit = (props: Props) => {
