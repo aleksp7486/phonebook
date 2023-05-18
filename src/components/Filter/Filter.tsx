@@ -23,7 +23,7 @@ const Filter = ({
     <Flex gap={4} mb={4}>
       <InputGroup>
         <InputLeftElement pointerEvents="none">
-          <SearchIcon color="gray.500" />
+          <SearchIcon />
         </InputLeftElement>
         <Input
           onChange={e => handelFilterChange(e)}
@@ -37,8 +37,7 @@ const Filter = ({
         variant="outline"
         isActive={showFavorite}
         aria-label="Show favorite"
-        color="gray.500"
-        icon={<StarIcon color="teal.500" />}
+        icon={<StarIcon />}
       />
     </Flex>
   );

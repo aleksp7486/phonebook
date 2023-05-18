@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout';
 import Login from 'pages/Login';
-import Register from 'pages/Register';
+import Submit from 'pages/Submit';
 import Contacts from 'pages/Contacts';
+import { IUser } from './types/user';
+import { Box } from 'framer-motion';
 
 const App: React.FC = () => {
+  const [user, setUser] = useState<IUser | null>(null);
+  const [token, setToken] = useState('');
+  // @ts-ignore
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Contacts />} />
         <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="submit"
+          element={<Submit setUser={setUser} setToken={setToken} />}
+        />
       </Route>
     </Routes>
   );

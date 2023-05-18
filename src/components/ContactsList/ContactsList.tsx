@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import ContactsItem from 'components/ContactsItem';
 import SkeletonContactsList from 'components/SkeletonContactsList';
-import { IContact } from 'components/types/contacts';
+import { IContact } from 'types/contacts';
 
 type Props = {
   contacts: Array<IContact>;

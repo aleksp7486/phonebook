@@ -5,3 +5,8 @@ export interface IContact {
   avatar: string;
   favorite: boolean;
 }
+
+export interface IAddFormValues {
+  name: string;
+  number: string;
+}

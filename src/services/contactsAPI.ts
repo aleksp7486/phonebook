@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { IAddFormValues } from 'components/types/addFormValues';
-import { IContact } from 'components/types/contacts';
+import { IAddFormValues } from 'types/contacts';
+import { IContact } from 'types/contacts';
 
 const baseUrl = 'https://645cea89e01ac61058971e65.mockapi.io/api/contacts';
+// const baseUrl = 'http://localhost:4000/api/contacts';
 
 const getAllContacts = async () => {
   try {

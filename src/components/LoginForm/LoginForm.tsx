@@ -49,7 +49,7 @@ const LoginForm = (props: Props) => {
         </InputGroup>
       </Stack>
       <Box w="100%">
-        <Button display="block" type="submit" colorScheme="teal" m="auto">
+        <Button display="block" type="submit" m="auto">
           Login
         </Button>
       </Box>

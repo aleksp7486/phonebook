@@ -1,7 +1,8 @@
 import { EditIcon } from '@chakra-ui/icons';
 import {
-  Box,
   Button,
+  FormControl,
+  FormLabel,
   Input,
   MenuItem,
   Modal,
@@ -15,7 +16,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { IContact } from 'components/types/contacts';
+import { IContact } from 'types/contacts';
 
 type Props = {
   contact: IContact;
@@ -31,12 +32,12 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
       name,
       number,
     },
-    onSubmit: values => {
+    onSubmit: async values => {
       const editedContact = {
         ...contact,
         ...values,
       };
-      handelEditContact(editedContact);
+      await handelEditContact(editedContact);
       onClose();
     },
   });
@@ -55,19 +56,19 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
             <ModalCloseButton />
             <ModalBody pb={6}>
               <Stack spacing={4}>
-                <Box>
-                  <label htmlFor="name">Name</label>
+                <FormControl id="name">
+                  <FormLabel>Name</FormLabel>
                   <Input
                     id="name"
                     name="name"
-                    type="name"
+                    type="text"
                     onChange={formik.handleChange}
                     value={formik.values.name}
                     focusBorderColor="teal.300"
                   />
-                </Box>
-                <Box>
-                  <label htmlFor="number">Number</label>
+                </FormControl>
+                <FormControl id="number">
+                  <FormLabel>Number</FormLabel>
                   <Input
                     id="number"
                     name="number"
@@ -76,11 +77,11 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
                     value={formik.values.number}
                     focusBorderColor="teal.300"
                   />
-                </Box>
+                </FormControl>
               </Stack>
             </ModalBody>
             <ModalFooter>
-              <Button type="submit" colorScheme="teal" mr={3}>
+              <Button type="submit" mr={3}>
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>

@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import EditContact from 'components/EditContactForm';
-import { IContact } from 'components/types/contacts';
+import { IContact } from 'types/contacts';
 
 type Props = {
   contact: IContact;
@@ -52,9 +52,8 @@ const ContactsItem = ({
             aria-label="Options"
             icon={<HamburgerIcon />}
             variant="outline"
-            color="gray.500"
           />
-          <MenuList color="gray.500">
+          <MenuList>
             <MenuItem onClick={() => toggleFavorite(id)} icon={<StarIcon />}>
               Favorite
             </MenuItem>
