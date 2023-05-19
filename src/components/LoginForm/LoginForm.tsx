@@ -84,7 +84,7 @@ const LoginForm = ({ handelSubmit }: Props) => {
                   justify={'space-between'}
                 >
                   <Checkbox>Remember me</Checkbox>
-                  <Link color={'blue.400'}>Forgot password?</Link>
+                  <Link color={'teal.400'}>Forgot password?</Link>
                 </Stack>
                 <Button>Sign in</Button>
               </Stack>

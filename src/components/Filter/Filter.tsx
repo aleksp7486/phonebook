@@ -20,7 +20,7 @@ const Filter = ({
   showFavorite,
 }: Props) => {
   return (
-    <Flex gap={4} mb={4}>
+    <Flex gap={4} py={4}>
       <InputGroup>
         <InputLeftElement pointerEvents="none">
           <SearchIcon />

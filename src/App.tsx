@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout';
-import Login from 'pages/Login';
-import Submit from 'pages/Submit';
-import Contacts from 'pages/Contacts';
+import LoginPage from 'pages/LoginPage';
+import SubmitPage from 'pages/SignUpPage';
+import ContactsPage from 'pages/ContactsPage';
 
 const App: React.FC = () => {
   // const [user, setUser] = useState<IUser | null>(null);
@@ -12,12 +12,12 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Contacts />} />
-        <Route path="login" element={<Login />} />
+        <Route index element={<ContactsPage />} />
+        <Route path="login" element={<LoginPage />} />
         <Route
           path="submit"
           // element={<Submit setUser={setUser} setToken={setToken} />}
-          element={<Submit />}
+          element={<SubmitPage />}
         />
       </Route>
     </Routes>

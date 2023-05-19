@@ -7,7 +7,11 @@ axios.defaults.baseURL = `${baseUrl}`;
 
 const submit = async (user: IUser) => {
   const response = await axios.post('/register', user);
-  console.log(response);
+  if (response.status === 201) {
+    return response.data.user;
+  } else {
+    return false;
+  }
 };
 
 const userAPI = {

@@ -24,7 +24,7 @@ const SharedLayout = () => {
           <Logo fill="teal" width="20px" height="20px" />
           Phonebook
         </Flex>
-        <Flex gap={4}>
+        <Flex gap={4} align={'center'}>
           <Flex as="nav" gap={2} fontWeight={500} fontSize="2xl">
             <Link as={NavLink} to="/login">
               Login
@@ -36,7 +36,7 @@ const SharedLayout = () => {
           <ToggleColorModeButton />
         </Flex>
       </Flex>
-      <Divider mb={4} />
+      <Divider />
       <Outlet />
     </Container>
   );

@@ -84,7 +84,9 @@ const EditContactForm = ({ contact, handelEditContact }: Props) => {
               <Button type="submit" mr={3}>
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={onClose} colorScheme="gray">
+                Cancel
+              </Button>
             </ModalFooter>
           </form>
         </ModalContent>

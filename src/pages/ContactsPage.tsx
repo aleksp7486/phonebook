@@ -6,7 +6,7 @@ import { IContact } from 'types/contacts';
 import React, { useEffect, useState } from 'react';
 import api from 'services/contactsAPI';
 
-const Contacts: React.FC = () => {
+const ContactsPage: React.FC = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('');
@@ -122,4 +122,4 @@ const Contacts: React.FC = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

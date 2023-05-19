@@ -40,12 +40,10 @@ const AddContactForm = ({ handelAddContact }: Props) => {
         onClick={onOpen}
         leftIcon={<AddIcon />}
         variant="outline"
-        mb={4}
         w="100%"
       >
         Add new contact
       </Button>
-
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -82,7 +80,9 @@ const AddContactForm = ({ handelAddContact }: Props) => {
               <Button type="submit" mr={3}>
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={onClose} colorScheme="gray">
+                Cancel
+              </Button>
             </ModalFooter>
           </form>
         </ModalContent>

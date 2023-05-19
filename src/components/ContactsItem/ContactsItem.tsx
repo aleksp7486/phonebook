@@ -42,8 +42,8 @@ const ContactsItem = ({
       </Flex>
       <Flex alignItems="center">
         {!favorite || (
-          <Box px={4} color="teal.500">
-            <StarIcon />
+          <Box px={4}>
+            <StarIcon color={'teal'} />
           </Box>
         )}
         <Menu>
