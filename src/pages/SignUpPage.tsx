@@ -3,8 +3,6 @@ import { useState } from 'react';
 import api from 'services/userAPI';
 import { IUser } from 'types/user';
 
-type Props = {};
-
 const SignUpPage = () => {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState<boolean>(false);
   const handelSubmit = async (user: IUser) => {

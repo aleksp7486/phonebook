@@ -4,9 +4,7 @@ import ToggleColorModeButton from 'components/ToggleColorModeButton';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 
-type Props = {};
-
-const NavBar = (props: Props) => {
+const NavBar = () => {
   return (
     <Flex
       as="header"
