@@ -14,8 +14,8 @@ import {
   Stack,
   useDisclosure,
 } from '@chakra-ui/react';
-import { IAddFormValues } from 'types/contacts';
 import { useFormik } from 'formik';
+import { IAddFormValues } from 'types/contacts';
 
 type Props = {
   handelAddContact: (values: IAddFormValues) => Promise<void>;

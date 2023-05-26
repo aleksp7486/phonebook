@@ -3,7 +3,7 @@ import { IconButton, useColorMode } from '@chakra-ui/react';
 
 type Props = {};
 
-const ToggleColorModeButton = (props: Props) => {
+const ToggleColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <header>

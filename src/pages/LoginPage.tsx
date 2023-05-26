@@ -1,8 +1,7 @@
 import LoginForm from 'components/LoginForm';
-import { IUser } from 'types/user';
 
 const LoginPage = () => {
-  const handelSubmit = async (user: IUser) => {};
+  const handelSubmit = async () => {};
   return <LoginForm handelSubmit={handelSubmit} />;
 };
 

@@ -1,5 +1,4 @@
 import { Flex, Skeleton, SkeletonCircle, Stack } from '@chakra-ui/react';
-import React from 'react';
 
 const SkeletonContactsList = () => {
   return (

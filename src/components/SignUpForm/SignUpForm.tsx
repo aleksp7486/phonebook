@@ -1,17 +1,17 @@
 import {
-  Flex,
   Box,
-  Stack,
+  Flex,
   Heading,
+  Link,
+  Stack,
   Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
-import { InputControl, SubmitButton } from 'formik-chakra-ui';
 import { Formik } from 'formik';
+import { InputControl, SubmitButton } from 'formik-chakra-ui';
+import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
 import { IUser } from '../../types/user';
-import { NavLink } from 'react-router-dom';
 
 const initialValues = {
   email: '',
@@ -34,7 +34,7 @@ type Props = {
   isSubmitSuccess: boolean;
 };
 
-const SignUpForm = ({ handelSubmit, isSubmitSuccess }: Props) => {
+const SignUpForm = ({ handelSubmit }: Props) => {
   const onSubmit = async (values: IUser) => {
     await handelSubmit(values);
   };
@@ -52,49 +52,36 @@ const SignUpForm = ({ handelSubmit, isSubmitSuccess }: Props) => {
           boxShadow={'lg'}
           p={8}
         >
-          {!isSubmitSuccess ? (
-            <>
-              <Formik
-                initialValues={initialValues}
-                onSubmit={onSubmit}
-                validationSchema={schema}
-              >
-                {({ handleSubmit, values, errors }) => (
-                  <Stack as="form" onSubmit={handleSubmit as any} spacing={4}>
-                    <InputControl
-                      name="email"
-                      label="Email address"
-                      isRequired
-                    />
-                    <InputControl
-                      inputProps={{ type: 'password' }}
-                      name="password"
-                      label="Password"
-                      isRequired
-                    />
-                    <Stack spacing={10} pt={2}>
-                      <SubmitButton>Sign up</SubmitButton>
-                    </Stack>
+          <>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              validationSchema={schema}
+            >
+              {({ handleSubmit }) => (
+                <Stack as="form" onSubmit={handleSubmit as any} spacing={4}>
+                  <InputControl name="email" label="Email address" isRequired />
+                  <InputControl
+                    inputProps={{ type: 'password' }}
+                    name="password"
+                    label="Password"
+                    isRequired
+                  />
+                  <Stack spacing={10} pt={2}>
+                    <SubmitButton>Sign up</SubmitButton>
                   </Stack>
-                )}
-              </Formik>
-              <Box pt={6}>
-                <Text align={'center'}>
-                  Already a user?{' '}
-                  <Link as={NavLink} to="/login" color={'teal.400'}>
-                    Login
-                  </Link>
-                </Text>
-              </Box>
-            </>
-          ) : (
-            <Text fontSize="2xl" textAlign={'center'}>
-              Thanks for your registration, please check your inbox!
-              <Link as={NavLink} to="/login" color={'teal.400'}>
-                Login
-              </Link>
-            </Text>
-          )}
+                </Stack>
+              )}
+            </Formik>
+            <Box pt={6}>
+              <Text align={'center'}>
+                Already a user?
+                <Link as={NavLink} to="/login" color={'teal.400'}>
+                  Login
+                </Link>
+              </Text>
+            </Box>
+          </>
         </Box>
       </Stack>
     </Flex>

@@ -5,7 +5,7 @@ const baseUrl = 'http://localhost:4000/api/user';
 
 axios.defaults.baseURL = `${baseUrl}`;
 
-const submit = async (user: IUser) => {
+const signUp = async (user: IUser) => {
   const response = await axios.post('/register', user);
   if (response.status === 201) {
     return response.data.user;
@@ -15,6 +15,6 @@ const submit = async (user: IUser) => {
 };
 
 const userAPI = {
-  submit,
+  signUp,
 };
 export default userAPI;

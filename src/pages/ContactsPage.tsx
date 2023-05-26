@@ -1,10 +1,9 @@
 import AddContactForm from 'components/AddContactForm';
 import ContactsList from 'components/ContactsList';
 import Filter from 'components/Filter';
-import { IAddFormValues } from 'types/contacts';
-import { IContact } from 'types/contacts';
 import React, { useEffect, useState } from 'react';
 import api from 'services/contactsAPI';
+import { IAddFormValues, IContact } from 'types/contacts';
 
 const ContactsPage: React.FC = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
@@ -112,7 +111,7 @@ const ContactsPage: React.FC = () => {
       />
       <AddContactForm handelAddContact={handelAddContact} />
       <ContactsList
-        contacts={!favorite ? filteredContacts : favoriteContacts}
+        contacts={favorite ? favoriteContacts : filteredContacts}
         handelDeleteContact={handelDeleteContact}
         toggleFavorite={toggleFavorite}
         isContactsLoading={isLoading}

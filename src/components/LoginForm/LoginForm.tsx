@@ -1,45 +1,40 @@
-import {
-  Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-  Button,
-  Heading,
-  useColorModeValue,
-  Link,
-  Checkbox,
-  InputRightElement,
-  InputGroup,
-} from '@chakra-ui/react';
-import { useState } from 'react';
-// import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useFormik } from 'formik';
+import { Box, Flex, Heading, Stack, useColorModeValue } from '@chakra-ui/react';
+import { Formik } from 'formik';
+import { InputControl, SubmitButton } from 'formik-chakra-ui';
+import * as yup from 'yup';
 import { IUser } from '../../types/user';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-// import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .email('Invalid email format')
+    .required('Mail is required'),
+  password: yup
+    .string()
+    .required('No password provided.')
+    .min(6, 'Password is too short - should be 6 chars minimum.'),
+});
 
 type Props = {
   handelSubmit: (user: IUser) => Promise<void>;
 };
 
 const LoginForm = ({ handelSubmit }: Props) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    onSubmit: async values => {
-      await handelSubmit(values);
-    },
-  });
+  const onSubmit = async (values: IUser) => {
+    await handelSubmit(values);
+  };
   return (
     <Flex minH={'100vh'} justify={'center'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in</Heading>
+          <Heading fontSize={'4xl'} textAlign={'center'}>
+            Sign up
+          </Heading>
         </Stack>
         <Box
           rounded={'lg'}
@@ -47,49 +42,26 @@ const LoginForm = ({ handelSubmit }: Props) => {
           boxShadow={'lg'}
           p={8}
         >
-          <form onSubmit={formik.handleSubmit}>
-            <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="email"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={schema}
+          >
+            {({ handleSubmit }) => (
+              <Stack as="form" onSubmit={handleSubmit as any} spacing={4}>
+                <InputControl name="email" label="Email address" isRequired />
+                <InputControl
+                  inputProps={{ type: 'password' }}
+                  name="password"
+                  label="Password"
+                  isRequired
                 />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type="password"
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                  />
-                  <InputRightElement h={'full'}>
-                    <Button
-                      variant={'ghost'}
-                      onClick={() =>
-                        setShowPassword(showPassword => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <Stack spacing={10}>
-                <Stack
-                  direction={{ base: 'column', sm: 'row' }}
-                  align={'start'}
-                  justify={'space-between'}
-                >
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={'teal.400'}>Forgot password?</Link>
+                <Stack spacing={10} pt={2}>
+                  <SubmitButton>Login</SubmitButton>
                 </Stack>
-                <Button>Sign in</Button>
               </Stack>
-            </Stack>
-          </form>
+            )}
+          </Formik>
         </Box>
       </Stack>
     </Flex>

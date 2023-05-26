@@ -1,3 +1,4 @@
+import { SearchIcon, StarIcon } from '@chakra-ui/icons';
 import {
   Flex,
   IconButton,
@@ -5,7 +6,6 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { StarIcon, SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
 
 type Props = {

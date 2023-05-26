@@ -1,17 +1,14 @@
 import SubmitForm from 'components/SignUpForm';
-import { IUser } from 'types/user';
-import api from 'services/userAPI';
 import { useState } from 'react';
+import api from 'services/userAPI';
+import { IUser } from 'types/user';
 
-type Props = {
-  // setUser: (value: IUser) => void;
-  // setToken: (value: string) => void;
-};
+type Props = {};
 
-const SignUpPage = (props: Props) => {
+const SignUpPage = () => {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState<boolean>(false);
   const handelSubmit = async (user: IUser) => {
-    const response = await api.submit(user);
+    const response = await api.signUp(user);
     if (response) {
       setIsSubmitSuccess(true);
     }

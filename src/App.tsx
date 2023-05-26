@@ -1,24 +1,16 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from 'components/SharedLayout';
+import Layout from 'components/Layout';
+import ContactsPage from 'pages/ContactsPage';
 import LoginPage from 'pages/LoginPage';
 import SubmitPage from 'pages/SignUpPage';
-import ContactsPage from 'pages/ContactsPage';
+import { Route, Routes } from 'react-router-dom';
 
-const App: React.FC = () => {
-  // const [user, setUser] = useState<IUser | null>(null);
-  // const [token, setToken] = useState('');
-  // @ts-ignore
+const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<ContactsPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route
-          path="submit"
-          // element={<Submit setUser={setUser} setToken={setToken} />}
-          element={<SubmitPage />}
-        />
+        <Route path="signUp" element={<SubmitPage />} />
       </Route>
     </Routes>
   );
