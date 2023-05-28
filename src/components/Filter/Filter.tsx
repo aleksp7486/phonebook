@@ -10,13 +10,13 @@ import React from 'react';
 
 type Props = {
   handelFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handelShowFavorite: () => void;
+  handelToggleFavoriteButton: () => void;
   showFavorite: boolean;
 };
 
 const Filter = ({
   handelFilterChange,
-  handelShowFavorite,
+  handelToggleFavoriteButton,
   showFavorite,
 }: Props) => {
   return (
@@ -33,7 +33,7 @@ const Filter = ({
         />
       </InputGroup>
       <IconButton
-        onClick={() => handelShowFavorite()}
+        onClick={() => handelToggleFavoriteButton()}
         variant="outline"
         isActive={showFavorite}
         aria-label="Show favorite"

@@ -7,7 +7,7 @@ const baseUrl = 'https://645cea89e01ac61058971e65.mockapi.io/api/contacts';
 const getAllContacts = async () => {
   try {
     const request = await axios.get(baseUrl);
-    if (request.statusText === 'OK') {
+    if (request.status === 200) {
       return request.data;
     }
   } catch (error) {
@@ -18,7 +18,7 @@ const getAllContacts = async () => {
 const getContactById = async (id: string) => {
   try {
     const request = await axios.get(`${baseUrl}/${id}`);
-    if (request.statusText === 'OK') {
+    if (request.status === 200) {
       return request.data;
     }
   } catch (error) {
@@ -34,7 +34,7 @@ const addContact = async ({ name, number }: IAddFormValues) => {
       favorite: false,
       avatar: '',
     });
-    if (request.statusText === 'OK') {
+    if (request.status === 201) {
       return request.data;
     }
   } catch (error) {
@@ -45,7 +45,7 @@ const addContact = async ({ name, number }: IAddFormValues) => {
 const deleteContact = async (id: string) => {
   try {
     const request = await axios.delete(`${baseUrl}/${id}`);
-    if (request.statusText === 'OK') {
+    if (request.status === 200) {
       return request.data;
     }
   } catch (error) {
@@ -58,7 +58,7 @@ const editContact = async (editContact: IContact) => {
     const request = await axios.put(`${baseUrl}/${editContact.id}`, {
       ...editContact,
     });
-    if (request.statusText === 'OK') {
+    if (request.status === 200) {
       return request.data;
     }
   } catch (error) {
@@ -73,7 +73,7 @@ const toggleFavorite = async (id: string) => {
       ...contact,
       favorite: !contact.favorite,
     });
-    if (request.statusText === 'OK') {
+    if (request.status === 200) {
       return request.data;
     }
   } catch (error) {

@@ -1,7 +1,7 @@
 import AddContactForm from 'components/AddContactForm';
 import ContactsList from 'components/ContactsList';
 import Filter from 'components/Filter';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import api from 'services/contactsAPI';
 import { IAddFormValues, IContact } from 'types/contacts';
 
@@ -15,6 +15,10 @@ const ContactsPage: React.FC = () => {
     const getContacts = async () => {
       setIsLoading(true);
       const data = await api.getAllContacts();
+      if (!data) {
+        setIsLoading(false);
+        return;
+      }
       setContacts(data);
       setIsLoading(false);
     };
@@ -25,47 +29,43 @@ const ContactsPage: React.FC = () => {
     setFilter((e.target as any).value);
   };
 
-  const filterContacts = (contacts: IContact[] | []): IContact[] | [] => {
+  const filteredContacts = useMemo(() => {
     return contacts.filter(
       contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase()) ||
         contact.number.toString().includes(filter.toString())
     );
-  };
+  }, [contacts, filter]);
 
-  const filteredContacts = filterContacts(contacts);
-
-  const handelShowFavorite = (): void => {
+  const handelToggleFavoriteButton = (): void => {
     setFavorite(!favorite);
   };
 
-  const showFavoriteContacts = (contacts: IContact[] | []): IContact[] | [] => {
+  const favoriteContacts = useMemo(() => {
     return filteredContacts.filter(contact => contact.favorite);
-  };
-
-  const favoriteContacts = showFavoriteContacts(filteredContacts);
+  }, [filteredContacts]);
 
   const toggleFavorite = async (id: string): Promise<void> => {
     const data = await api.toggleFavorite(id);
     if (!data) {
       return;
     }
-    const updatedContacts: IContact[] | [] = contacts.map(contact => {
+    const contactsToUpdate: IContact[] | [] = contacts.map(contact => {
       if (contact.id === data.id) {
         contact.favorite = data.favorite;
         return contact;
       }
       return contact;
     });
-    setContacts(updatedContacts);
+    setContacts(contactsToUpdate);
   };
 
-  const handelAddContact = async (values: IAddFormValues) => {
-    const data: IContact = await api.addContact(values);
+  const handelAddContact = async (formData: IAddFormValues) => {
+    const data: IContact = await api.addContact(formData);
     if (!data) {
       return;
     }
-    setContacts([...contacts, data]);
+    setContacts(prev => [...prev, data]);
   };
 
   const handelDeleteContact = async (id: string) => {
@@ -95,7 +95,7 @@ const ContactsPage: React.FC = () => {
     <>
       <Filter
         handelFilterChange={handelFilterChange}
-        handelShowFavorite={handelShowFavorite}
+        handelToggleFavoriteButton={handelToggleFavoriteButton}
         showFavorite={favorite}
       />
       <AddContactForm handelAddContact={handelAddContact} />
