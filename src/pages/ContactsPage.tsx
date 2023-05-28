@@ -14,12 +14,8 @@ const ContactsPage: React.FC = () => {
   useEffect(() => {
     const getContacts = async () => {
       setIsLoading(true);
-      const fetchedContacts = await api.getAllContacts();
-      if (fetchedContacts) {
-        setContacts(fetchedContacts);
-      } else {
-        return;
-      }
+      const data = await api.getAllContacts();
+      setContacts(data);
       setIsLoading(false);
     };
     getContacts();
@@ -29,7 +25,7 @@ const ContactsPage: React.FC = () => {
     setFilter((e.target as any).value);
   };
 
-  const filterContacts = () => {
+  const filterContacts = (contacts: IContact[] | []): IContact[] | [] => {
     return contacts.filter(
       contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase()) ||
@@ -37,69 +33,62 @@ const ContactsPage: React.FC = () => {
     );
   };
 
-  const filteredContacts = filterContacts();
+  const filteredContacts = filterContacts(contacts);
 
-  const handelShowFavorite = () => {
+  const handelShowFavorite = (): void => {
     setFavorite(!favorite);
   };
 
-  const showFavoriteContacts = () => {
+  const showFavoriteContacts = (contacts: IContact[] | []): IContact[] | [] => {
     return filteredContacts.filter(contact => contact.favorite);
   };
 
-  const favoriteContacts = showFavoriteContacts();
+  const favoriteContacts = showFavoriteContacts(filteredContacts);
 
-  const toggleFavorite = async (id: string) => {
-    const response = await api.toggleFavorite(id);
-    if (response) {
-      const updatedContacts = contacts.map(contact => {
-        if (contact.id === response.id) {
-          contact.favorite = response.favorite;
-          return contact;
-        }
-        return contact;
-      });
-      setContacts(updatedContacts);
-    } else {
+  const toggleFavorite = async (id: string): Promise<void> => {
+    const data = await api.toggleFavorite(id);
+    if (!data) {
       return;
     }
+    const updatedContacts: IContact[] | [] = contacts.map(contact => {
+      if (contact.id === data.id) {
+        contact.favorite = data.favorite;
+        return contact;
+      }
+      return contact;
+    });
+    setContacts(updatedContacts);
   };
 
   const handelAddContact = async (values: IAddFormValues) => {
-    const responseContact: IContact = await api.addContact(values);
-    if (responseContact) {
-      setContacts([...contacts, responseContact]);
-    } else {
+    const data: IContact = await api.addContact(values);
+    if (!data) {
       return;
     }
+    setContacts([...contacts, data]);
   };
 
   const handelDeleteContact = async (id: string) => {
-    const deletedContact: IContact = await api.deleteContact(id);
-    if (deletedContact) {
-      const updatedContacts = contacts.filter(
-        contact => contact.id !== deletedContact.id
-      );
-      setContacts(updatedContacts);
-    } else {
+    const data: IContact = await api.deleteContact(id);
+    if (!data) {
       return;
     }
+    const contactsToUpdate = contacts.filter(contact => contact.id !== data.id);
+    setContacts(contactsToUpdate);
   };
 
   const handelEditContact = async (editedContact: IContact) => {
-    const responseContact: IContact = await api.editContact(editedContact);
-
-    if (responseContact) {
-      const updatedContacts: IContact[] = contacts.map(contact => {
-        if (contact.id === responseContact.id) {
-          return editedContact;
-        }
-        return contact;
-      });
-      setContacts(updatedContacts);
-    } else {
+    const data: IContact = await api.editContact(editedContact);
+    if (!data) {
       return;
     }
+    const contactsToUpdate: IContact[] = contacts.map(contact => {
+      if (contact.id === data.id) {
+        return data;
+      }
+      return contact;
+    });
+    setContacts(contactsToUpdate);
   };
 
   return (

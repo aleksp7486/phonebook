@@ -7,7 +7,7 @@ const baseUrl = 'https://645cea89e01ac61058971e65.mockapi.io/api/contacts';
 const getAllContacts = async () => {
   try {
     const request = await axios.get(baseUrl);
-    if (request.status === 200) {
+    if (request.statusText === 'OK') {
       return request.data;
     }
   } catch (error) {
@@ -18,7 +18,7 @@ const getAllContacts = async () => {
 const getContactById = async (id: string) => {
   try {
     const request = await axios.get(`${baseUrl}/${id}`);
-    if (request.status === 200) {
+    if (request.statusText === 'OK') {
       return request.data;
     }
   } catch (error) {
@@ -29,12 +29,14 @@ const getContactById = async (id: string) => {
 const addContact = async ({ name, number }: IAddFormValues) => {
   try {
     const request = await axios.post(baseUrl, {
-      name: name,
-      number: number,
+      name,
+      number,
       favorite: false,
       avatar: '',
     });
-    return request.status === 201 ? request.data : false;
+    if (request.statusText === 'OK') {
+      return request.data;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -43,7 +45,9 @@ const addContact = async ({ name, number }: IAddFormValues) => {
 const deleteContact = async (id: string) => {
   try {
     const request = await axios.delete(`${baseUrl}/${id}`);
-    return request.status === 200 ? request.data : false;
+    if (request.statusText === 'OK') {
+      return request.data;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -54,7 +58,9 @@ const editContact = async (editContact: IContact) => {
     const request = await axios.put(`${baseUrl}/${editContact.id}`, {
       ...editContact,
     });
-    return request.status === 200 ? request.data : false;
+    if (request.statusText === 'OK') {
+      return request.data;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -67,7 +73,9 @@ const toggleFavorite = async (id: string) => {
       ...contact,
       favorite: !contact.favorite,
     });
-    return request.status === 200 ? request.data : false;
+    if (request.statusText === 'OK') {
+      return request.data;
+    }
   } catch (error) {
     console.error(error);
   }
