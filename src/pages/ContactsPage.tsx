@@ -1,11 +1,11 @@
 import AddContactForm from 'components/AddContactForm';
 import ContactsList from 'components/ContactsList';
 import Filter from 'components/Filter';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from 'services/contactsAPI';
 import { IAddFormValues, IContact } from 'types/contacts';
 
-const ContactsPage: React.FC = () => {
+const ContactsPage = () => {
   const [contacts, setContacts] = useState<Array<IContact> | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('');
@@ -24,26 +24,6 @@ const ContactsPage: React.FC = () => {
     };
     getContacts();
   }, []);
-
-  const handelFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter((e.target as any).value);
-  };
-
-  const filteredContacts = useMemo(() => {
-    return contacts.filter(
-      contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-        contact.number.toString().includes(filter.toString())
-    );
-  }, [contacts, filter]);
-
-  const handelToggleFavoriteButton = (): void => {
-    setFavorite(!favorite);
-  };
-
-  const favoriteContacts = useMemo(() => {
-    return filteredContacts.filter(contact => contact.favorite);
-  }, [filteredContacts]);
 
   const toggleFavorite = async (id: string): Promise<void> => {
     const data = await api.toggleFavorite(id);
@@ -65,7 +45,7 @@ const ContactsPage: React.FC = () => {
     if (!data) {
       return;
     }
-    setContacts(prev => [...prev, data]);
+    setContacts([...contacts, data]);
   };
 
   const handelDeleteContact = async (id: string) => {
@@ -91,12 +71,20 @@ const ContactsPage: React.FC = () => {
     setContacts(contactsToUpdate);
   };
 
+  const filteredContacts = contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.toString().includes(filter.toString())
+  );
+
+  const favoriteContacts = filteredContacts.filter(contact => contact.favorite);
+
   return (
     <>
       <Filter
-        handelFilterChange={handelFilterChange}
-        handelToggleFavoriteButton={handelToggleFavoriteButton}
-        showFavorite={favorite}
+        setFilter={setFilter}
+        setFavorite={setFavorite}
+        favorite={favorite}
       />
       <AddContactForm handelAddContact={handelAddContact} />
       <ContactsList

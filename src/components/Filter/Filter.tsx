@@ -9,16 +9,19 @@ import {
 import React from 'react';
 
 type Props = {
-  handelFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handelToggleFavoriteButton: () => void;
-  showFavorite: boolean;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  setFavorite: React.Dispatch<React.SetStateAction<boolean>>;
+  favorite: boolean;
 };
 
-const Filter = ({
-  handelFilterChange,
-  handelToggleFavoriteButton,
-  showFavorite,
-}: Props) => {
+const Filter = ({ setFilter, setFavorite, favorite }: Props) => {
+  const handelFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter((e.target as any).value);
+  };
+  const toggleFavoriteButton = (): void => {
+    setFavorite(prev => !prev);
+  };
+
   return (
     <Flex gap={4} py={4}>
       <InputGroup>
@@ -33,9 +36,9 @@ const Filter = ({
         />
       </InputGroup>
       <IconButton
-        onClick={() => handelToggleFavoriteButton()}
+        onClick={() => toggleFavoriteButton()}
         variant="outline"
-        isActive={showFavorite}
+        isActive={favorite}
         aria-label="Show favorite"
         icon={<StarIcon />}
       />
