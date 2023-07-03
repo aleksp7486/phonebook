@@ -76,7 +76,12 @@ const SignUpForm = ({ handelSubmit }: Props) => {
             <Box pt={6}>
               <Text align={'center'}>
                 Already a user?
-                <Link as={NavLink} to="/login" color={'teal.400'}>
+                <Link
+                  as={NavLink}
+                  to="/login"
+                  color={'teal.400'}
+                  paddingLeft={2}
+                >
                   Login
                 </Link>
               </Text>
